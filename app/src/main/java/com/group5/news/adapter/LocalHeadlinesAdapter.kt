@@ -1,4 +1,4 @@
-package com.tubagus.news.adapter
+package com.group5.news.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,8 +6,8 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.tubagus.news.data.Article
-import com.tubagus.news.databinding.RvLocalHeadlinesBinding
+import com.group5.news.data.Article
+import com.group5.news.databinding.RvLocalHeadlinesBinding
 
 class LocalHeadlinesAdapter : RecyclerView.Adapter<LocalHeadlinesAdapter.ViewHolder>() {
     val differ = AsyncListDiffer(this, object : DiffUtil.ItemCallback<Article>() {

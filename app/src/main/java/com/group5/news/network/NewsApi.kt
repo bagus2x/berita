@@ -1,6 +1,6 @@
-package com.tubagus.news.network
+package com.group5.news.network
 
-import com.tubagus.news.data.NewsResponse
+import com.group5.news.data.NewsResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

@@ -1,11 +1,11 @@
-package com.tubagus.news
+package com.group5.news
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.tubagus.news.data.NewsResponse
-import com.tubagus.news.network.Api
-import com.tubagus.news.utlities.StateResult
+import com.group5.news.data.NewsResponse
+import com.group5.news.network.Api
+import com.group5.news.utlities.StateResult
 import kotlinx.coroutines.launch
 
 class MainViewModel : ViewModel() {

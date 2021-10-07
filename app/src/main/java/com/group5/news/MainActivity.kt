@@ -1,15 +1,15 @@
-package com.tubagus.news
+package com.group5.news
 
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
-import com.tubagus.news.adapter.GlobalHeadlinesAdapter
-import com.tubagus.news.adapter.LocalHeadlinesAdapter
-import com.tubagus.news.databinding.ActivityMainBinding
-import com.tubagus.news.utlities.StateResult
-import com.tubagus.news.utlities.makeSnackbar
+import com.group5.news.adapter.GlobalHeadlinesAdapter
+import com.group5.news.adapter.LocalHeadlinesAdapter
+import com.group5.news.databinding.ActivityMainBinding
+import com.group5.news.utlities.StateResult
+import com.group5.news.utlities.makeSnackbar
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding

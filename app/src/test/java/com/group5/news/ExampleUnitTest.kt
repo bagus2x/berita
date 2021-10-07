@@ -1,4 +1,4 @@
-package com.tubagus.news
+package com.group5.news
 
 import org.junit.Test
 

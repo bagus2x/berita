@@ -1,4 +1,4 @@
-package com.tubagus.news.utlities
+package com.group5.news.utlities
 
 sealed class StateResult<out T>(
     val data: T? = null,

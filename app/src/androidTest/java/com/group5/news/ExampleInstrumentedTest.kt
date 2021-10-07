@@ -1,4 +1,4 @@
-package com.tubagus.news
+package com.group5.news
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

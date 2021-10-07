@@ -9,7 +9,7 @@ android {
     compileSdk 31
 
     defaultConfig {
-        applicationId "com.tubagus.news"
+        applicationId "com.group5.news"
         minSdk 29
         targetSdk 31
         versionCode 1

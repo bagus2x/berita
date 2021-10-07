@@ -1,4 +1,4 @@
-package com.tubagus.news.network
+package com.group5.news.network
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
