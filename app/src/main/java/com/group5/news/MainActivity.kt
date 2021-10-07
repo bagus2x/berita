@@ -5,8 +5,8 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
-import com.group5.news.adapter.GlobalHeadlinesAdapter
-import com.group5.news.adapter.LocalHeadlinesAdapter
+import com.group5.news.adapter.TechnologyHeadlinesAdapter
+import com.group5.news.adapter.GeneralHeadlinesAdapter
 import com.group5.news.databinding.ActivityMainBinding
 import com.group5.news.utlities.StateResult
 import com.group5.news.utlities.makeSnackbar
@@ -20,20 +20,20 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setupGlobalHeadlines()
-        setupLocalHeadlines()
+        setupTechnologyHeadlines()
+        setupGeneralHeadlines()
     }
 
-    private fun setupGlobalHeadlines() {
-        mainViewModel.getGlobalHeadlines(5)
-        val globalHeadlinesAdapter = GlobalHeadlinesAdapter()
-        mainViewModel.headlinesGlobal.observe(this, { res ->
+    private fun setupTechnologyHeadlines() {
+        mainViewModel.getTechnologyHeadlines(5)
+        val technologyHeadlinesAdapter = TechnologyHeadlinesAdapter()
+        mainViewModel.headlinesTechnology.observe(this, { res ->
             when (res) {
                 is StateResult.Loading -> {
                 }
                 is StateResult.Success -> {
                     res.data?.let { it ->
-                        globalHeadlinesAdapter.differ.submitList(it.articles)
+                        technologyHeadlinesAdapter.differ.submitList(it.articles)
                     }
                 }
                 is StateResult.Error -> {
@@ -42,22 +42,22 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        binding.rvHeadlinesGlobal.apply {
+        binding.rvHeadlinesTechnology.apply {
             layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
-            adapter = globalHeadlinesAdapter
+            adapter = technologyHeadlinesAdapter
         }
     }
 
-    private fun setupLocalHeadlines() {
-        mainViewModel.getLocalHeadlines(20)
-        val localHeadlinesAdapter = LocalHeadlinesAdapter()
-        mainViewModel.headlinesLocal.observe(this, { res ->
+    private fun setupGeneralHeadlines() {
+        mainViewModel.getGeneralHeadlines(20)
+        val generalHeadlinesAdapter = GeneralHeadlinesAdapter()
+        mainViewModel.headlinesGeneral.observe(this, { res ->
             when (res) {
                 is StateResult.Loading -> {
                 }
                 is StateResult.Success -> {
                     res.data?.let { it ->
-                        localHeadlinesAdapter.differ.submitList(it.articles)
+                        generalHeadlinesAdapter.differ.submitList(it.articles)
                     }
                 }
                 is StateResult.Error -> {
@@ -66,9 +66,9 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        binding.rvHeadlinesLocal.apply {
+        binding.rvHeadlinesGeneral.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
-            adapter = localHeadlinesAdapter
+            adapter = generalHeadlinesAdapter
         }
     }
 }

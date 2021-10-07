@@ -9,7 +9,7 @@
         motion:duration="1000">
        <KeyFrameSet>
        </KeyFrameSet>
-        <OnSwipe motion:touchAnchorId="@+id/rv_headlines_local" />
+        <OnSwipe motion:touchAnchorId="@+id/rv_headlines_general" />
     </Transition>
 
     <ConstraintSet android:id="@+id/start">
@@ -20,9 +20,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            motion:layout_constraintStart_toStartOf="@+id/rv_headlines_global"
-            android:id="@+id/tv_headlines_global"
-            motion:layout_constraintBottom_toTopOf="@+id/rv_headlines_global"
+            motion:layout_constraintStart_toStartOf="@+id/rv_headlines_technology"
+            android:id="@+id/tv_headlines_technology"
+            motion:layout_constraintBottom_toTopOf="@+id/rv_headlines_technology"
             android:layout_marginBottom="12dp"
             android:layout_marginLeft="12dp" />
         <Constraint
@@ -30,7 +30,7 @@
             motion:layout_constraintStart_toStartOf="parent"
             motion:layout_constraintEnd_toEndOf="parent"
             android:layout_width="match_parent"
-            android:id="@+id/rv_headlines_global"
+            android:id="@+id/rv_headlines_technology"
             motion:layout_constraintBottom_toTopOf="parent" />
     </ConstraintSet>
 </MotionScene>

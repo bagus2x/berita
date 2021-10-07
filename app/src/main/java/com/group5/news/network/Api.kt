@@ -1,30 +1,29 @@
 package com.group5.news.network
 
+import com.group5.news.utlities.Connectivity
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.io.IOException
 
-private const val NEWS_API_BASE_URL = "https://newsapi.org"
-private const val NEWS_API_KEY = "09734487ae034b1db7dd8b3df1fd2250"
+private const val NEWS_API_BASE_URL = "https://saurav.tech"
 
 class Api {
 
     companion object {
         private val retrofit by lazy {
-            val logging = HttpLoggingInterceptor().apply {
-                level = HttpLoggingInterceptor.Level.BODY
-            }
-
             val client = OkHttpClient.Builder()
-                .addInterceptor(logging)
                 .addInterceptor {
-                    it.proceed(
-                        it.request().newBuilder().apply {
-                            addHeader("X-Api-Key", NEWS_API_KEY)
-                        }.build()
-                    )
+                    if (!Connectivity.instance.isOnline()) {
+                        throw IOException("No internet connection")
+                    } else {
+                        it.proceed(it.request())
+                    }
                 }
+                .addInterceptor(HttpLoggingInterceptor().apply {
+                    level = HttpLoggingInterceptor.Level.BODY
+                })
                 .build()
 
             Retrofit.Builder()

@@ -7,9 +7,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.group5.news.data.Article
-import com.group5.news.databinding.RvGlobalHeadlinesBinding
+import com.group5.news.databinding.RvGeneralHeadlinesBinding
 
-class GlobalHeadlinesAdapter : RecyclerView.Adapter<GlobalHeadlinesAdapter.ViewHolder>() {
+class GeneralHeadlinesAdapter : RecyclerView.Adapter<GeneralHeadlinesAdapter.ViewHolder>() {
     val differ = AsyncListDiffer(this, object : DiffUtil.ItemCallback<Article>() {
 
         override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
@@ -21,17 +21,17 @@ class GlobalHeadlinesAdapter : RecyclerView.Adapter<GlobalHeadlinesAdapter.ViewH
         }
     })
 
-    inner class ViewHolder(val binding: RvGlobalHeadlinesBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class ViewHolder(val binding: RvGeneralHeadlinesBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = RvGlobalHeadlinesBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = RvGeneralHeadlinesBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val article = differ.currentList[position]
         holder.binding.tvTitle.text = article.title
-        holder.binding.tvDescription.text = article.content
+        holder.binding.tvDate.text = article.publishedAt
         Glide.with(holder.itemView).load(article.urlToImage).into(holder.binding.sivPicture)
     }
 
