@@ -1,4 +1,4 @@
-package com.group5.news.utlities
+package com.group5.news.utilities
 
 import android.content.Context
 import android.net.ConnectivityManager

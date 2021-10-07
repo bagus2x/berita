@@ -8,7 +8,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.group5.news.adapter.TechnologyHeadlinesAdapter
 import com.group5.news.adapter.GeneralHeadlinesAdapter
 import com.group5.news.databinding.ActivityMainBinding
-import com.group5.news.utlities.makeSnackbar
+import com.group5.news.utilities.makeSnackbar
 import com.group5.news.data.Result
 
 class MainActivity : AppCompatActivity() {

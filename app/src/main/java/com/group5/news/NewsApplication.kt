@@ -1,7 +1,7 @@
 package com.group5.news
 
 import android.app.Application
-import com.group5.news.utlities.Connectivity
+import com.group5.news.utilities.Connectivity
 
 @Suppress("unused")
 class NewsApplication : Application() {

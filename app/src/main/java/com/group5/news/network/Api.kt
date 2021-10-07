@@ -1,6 +1,6 @@
 package com.group5.news.network
 
-import com.group5.news.utlities.Connectivity
+import com.group5.news.utilities.Connectivity
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

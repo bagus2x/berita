@@ -1,4 +1,4 @@
-package com.group5.news.utlities
+package com.group5.news.utilities
 
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
