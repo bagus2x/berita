@@ -8,43 +8,35 @@ import com.group5.news.network.Api
 import com.group5.news.data.Result
 import kotlinx.coroutines.launch
 
+typealias ArticlesLiveData = MutableLiveData<Result<ArticlesResponse>>
+
 class MainViewModel : ViewModel() {
-    val headlinesTechnology: MutableLiveData<Result<ArticlesResponse>> = MutableLiveData()
-    val headlinesGeneral: MutableLiveData<Result<ArticlesResponse>> = MutableLiveData()
-
-    fun getGeneralHeadlines(pageSize: Int) = viewModelScope.launch {
-        headlinesGeneral.postValue(Result.Loading())
-        try {
-            val res = Api.news.getHeadlines("general", "us")
-            if (res.isSuccessful) {
-                res.body()?.let {
-                    it.articles = it.articles.take(pageSize)
-                    headlinesGeneral.postValue(Result.Success(it))
-                }
-                return@launch
-            }
-
-            headlinesGeneral.postValue(Result.Error(res.message() ?: "Error has occurred"))
-        } catch (e: Exception) {
-            headlinesTechnology.postValue(Result.Error(e.message ?: "Error has occurred"))
-        }
-    }
+    val headlinesTechnology: ArticlesLiveData = MutableLiveData()
+    val headlinesGeneral: ArticlesLiveData = MutableLiveData()
 
     fun getTechnologyHeadlines(pageSize: Int) = viewModelScope.launch {
-        headlinesTechnology.postValue(Result.Loading())
+        getHeadlines(headlinesTechnology, "technology", "us", pageSize)
+    }
+
+    fun getGeneralHeadlines(pageSize: Int) = viewModelScope.launch {
+        getHeadlines(headlinesGeneral, "general", "us", pageSize)
+    }
+
+    private suspend fun getHeadlines(data: ArticlesLiveData, category: String, country: String, pageSize: Int) {
+        data.postValue(Result.Loading())
         try {
-            val res = Api.news.getHeadlines("technology", "us")
-            if (res.isSuccessful) {
-                res.body()?.let {
-                    it.articles = it.articles.take(pageSize)
-                    headlinesTechnology.postValue(Result.Success(it))
-                }
-                return@launch
+            val res = Api.news.getHeadlines(category, country)
+            if (!res.isSuccessful) {
+                headlinesGeneral.postValue(Result.Error(res.message() ?: "Error has occurred"))
+                return
             }
 
-            headlinesGeneral.postValue(Result.Error(res.message() ?: "Error has occurred"))
+            res.body()?.let {
+                it.articles = it.articles.take(pageSize)
+                data.postValue(Result.Success(it))
+            }
         } catch (e: Exception) {
-            headlinesTechnology.postValue(Result.Error(e.message ?: "Error has occurred"))
+            data.postValue(Result.Error(e.message ?: "Error has occurred"))
         }
     }
 }
