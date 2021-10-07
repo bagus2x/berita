@@ -12,12 +12,12 @@ import com.group5.news.databinding.RvTechnologyHeadlinesBinding
 class TechnologyHeadlinesAdapter : RecyclerView.Adapter<TechnologyHeadlinesAdapter.ViewHolder>() {
     val differ = AsyncListDiffer(this, object : DiffUtil.ItemCallback<Article>() {
 
-        override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
-            return oldItem.url == newItem.url
+        override fun areItemsTheSame(old: Article, new: Article): Boolean {
+            return old.url == new.url
         }
 
-        override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean {
-            return oldItem == newItem
+        override fun areContentsTheSame(old: Article, new: Article): Boolean {
+            return old == new
         }
     })
 

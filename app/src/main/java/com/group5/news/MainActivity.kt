@@ -8,8 +8,8 @@ import com.google.android.material.snackbar.Snackbar
 import com.group5.news.adapter.TechnologyHeadlinesAdapter
 import com.group5.news.adapter.GeneralHeadlinesAdapter
 import com.group5.news.databinding.ActivityMainBinding
-import com.group5.news.utlities.StateResult
 import com.group5.news.utlities.makeSnackbar
+import com.group5.news.data.Result
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -29,15 +29,15 @@ class MainActivity : AppCompatActivity() {
         val technologyHeadlinesAdapter = TechnologyHeadlinesAdapter()
         mainViewModel.headlinesTechnology.observe(this, { res ->
             when (res) {
-                is StateResult.Loading -> {
+                is Result.Loading -> {
                 }
-                is StateResult.Success -> {
-                    res.data?.let { it ->
+                is Result.Success -> {
+                    res.data.let {
                         technologyHeadlinesAdapter.differ.submitList(it.articles)
                     }
                 }
-                is StateResult.Error -> {
-                    makeSnackbar(res.message ?: "Error has occurred", Snackbar.LENGTH_SHORT).show()
+                is Result.Error -> {
+                    makeSnackbar(res.message, Snackbar.LENGTH_SHORT).show()
                 }
             }
         })
@@ -53,15 +53,15 @@ class MainActivity : AppCompatActivity() {
         val generalHeadlinesAdapter = GeneralHeadlinesAdapter()
         mainViewModel.headlinesGeneral.observe(this, { res ->
             when (res) {
-                is StateResult.Loading -> {
+                is Result.Loading -> {
                 }
-                is StateResult.Success -> {
-                    res.data?.let { it ->
+                is Result.Success -> {
+                    res.data.let {
                         generalHeadlinesAdapter.differ.submitList(it.articles)
                     }
                 }
-                is StateResult.Error -> {
-                    makeSnackbar(res.message ?: "Error has occurred", Snackbar.LENGTH_SHORT).show()
+                is Result.Error -> {
+                    makeSnackbar(res.message, Snackbar.LENGTH_SHORT).show()
                 }
             }
         })
