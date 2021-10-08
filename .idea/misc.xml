@@ -4,8 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Coding/AndroidStudio/News/app/src/main/res/layout/activity_main.xml" value="0.25" />
-        <entry key="..\:/Coding/AndroidStudio/News/app/src/main/res/layout/rv_general_headlines.xml" value="0.184375" />
-        <entry key="..\:/Coding/AndroidStudio/News/app/src/main/res/layout/rv_technology_headlines.xml" value="0.184375" />
+        <entry key="..\:/Coding/AndroidStudio/News/app/src/main/res/layout/rv_general_headlines.xml" value="0.9" />
+        <entry key="..\:/Coding/AndroidStudio/News/app/src/main/res/layout/rv_technology_headlines.xml" value="0.67" />
       </map>
     </option>
   </component>

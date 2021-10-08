@@ -3,10 +3,8 @@ package com.group5.news.utilities
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import android.net.wifi.WifiManager
 
 class Connectivity {
-    private lateinit var wifiManager: WifiManager
     private lateinit var connectivityManager: ConnectivityManager
 
     companion object {
@@ -14,17 +12,16 @@ class Connectivity {
     }
 
     fun initializeWithApplicationContext(context: Context) {
-        wifiManager = context.applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
         connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
     }
 
     fun isOnline(): Boolean {
-        val capabilities = connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
-        if (capabilities != null) {
+        connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)?.let {
             when {
-                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> return true
-                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> return true
-                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> return true
+                it.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> return true
+                it.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> return true
+                it.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> return true
+                else -> false
             }
         }
         return false
